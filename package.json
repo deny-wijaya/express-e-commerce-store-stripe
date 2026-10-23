@@ -17,8 +17,8 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/server.js",
-    "dev": "ts-node server.ts",
-    "dev:watch": "nodemon --exec \"ts-node\" server.ts",
+    "dev": "ts-node -r tsconfig-paths/register server.ts",
+    "dev:watch": "nodemon --exec \"ts-node -r tsconfig-paths/register\" server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
@@ -28,6 +28,7 @@
     "@types/node": "^24.2.1",
     "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "typescript": "^5.9.2"
   }
 }

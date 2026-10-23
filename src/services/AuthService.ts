@@ -1,5 +1,6 @@
 import crypto from 'crypto';
-import { User, CreateUserRequest, LoginRequest, AuthResponse, UserRepository } from '@/models/User';
+import { User, CreateUserRequest, LoginRequest, AuthResponse } from '@/types/User';
+import { UserRepository } from '@/repositories/UserRepository';
 
 export class AuthService {
   private userRepository: UserRepository;

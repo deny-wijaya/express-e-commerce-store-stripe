@@ -26,9 +26,3 @@ export interface AuthResponse {
     token: string;
   };
 }
-
-export interface UserRepository {
-  findByEmail(email: string): Promise<User | null>;
-  create(userData: CreateUserRequest): Promise<User>;
-  findById(id: string): Promise<User | null>;
-}

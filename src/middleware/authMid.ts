@@ -1,6 +1,6 @@
 import { NextFunction, Response, Request } from "express";
 import { AuthService } from "@/services/AuthService";
-import { InMemoryUserRepository } from "@/models/UserRepository";
+import { InMemoryUserRepository } from "@/repositories/InMemoryUserRepository";
 
 // Create auth service instance
 const userRepository = new InMemoryUserRepository();

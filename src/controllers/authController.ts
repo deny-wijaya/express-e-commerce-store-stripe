@@ -1,7 +1,7 @@
 import { NextFunction, Response, Request } from "express";
 import { AuthService } from "@/services/AuthService";
-import { InMemoryUserRepository } from "@/models/UserRepository";
-import { LoginRequest, CreateUserRequest } from "@/models/User";
+import { InMemoryUserRepository } from "@/repositories/InMemoryUserRepository";
+import { LoginRequest, CreateUserRequest } from "@/types/User";
 
 export class AuthController {
   private authService: AuthService;

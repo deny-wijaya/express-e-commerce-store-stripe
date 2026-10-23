@@ -1,4 +1,5 @@
-import { User, CreateUserRequest, UserRepository } from '@/models/User';
+import { User, CreateUserRequest } from '@/types/User';
+import { UserRepository } from '@/repositories/UserRepository';
 
 /**
  * In-memory implementation of UserRepository
