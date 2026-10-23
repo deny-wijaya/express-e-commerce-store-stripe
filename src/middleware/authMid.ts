@@ -1,9 +1,9 @@
 import { NextFunction, Response, Request } from "express";
 import { AuthService } from "@/services/AuthService";
-import { InMemoryUserRepository } from "@/repositories/InMemoryUserRepository";
+import { PostgresUserRepository } from "@/repositories/PostgresUserRepository";
 
 // Create auth service instance
-const userRepository = new InMemoryUserRepository();
+const userRepository = new PostgresUserRepository();
 const authService = new AuthService(userRepository);
 
 /**

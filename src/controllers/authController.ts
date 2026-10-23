@@ -1,14 +1,13 @@
 import { NextFunction, Response, Request } from "express";
 import { AuthService } from "@/services/AuthService";
-import { InMemoryUserRepository } from "@/repositories/InMemoryUserRepository";
+import { PostgresUserRepository } from "@/repositories/PostgresUserRepository";
 import { LoginRequest, CreateUserRequest } from "@/types/User";
 
 export class AuthController {
   private authService: AuthService;
 
   constructor() {
-    // Dalam production, ini akan menggunakan database repository
-    const userRepository = new InMemoryUserRepository();
+    const userRepository = new PostgresUserRepository();
     this.authService = new AuthService(userRepository);
   }
 

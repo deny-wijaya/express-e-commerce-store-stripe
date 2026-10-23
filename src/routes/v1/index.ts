@@ -4,8 +4,7 @@ import { authRoutes } from "@/routes/authRoute";
 const router = Router();
 
 // API v1 routes
-router.use("/login", authRoutes);
-router.use("/register", authRoutes);
+router.use("/auth", authRoutes);
 
 // Health check
 router.get("/health", (req, res) => {

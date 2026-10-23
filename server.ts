@@ -1,3 +1,6 @@
+import "dotenv/config";
+import { apiRoutes } from '@/routes';
+import { sequelize } from '@/config/database';
 import express, { Request, Response, NextFunction, ErrorRequestHandler } from 'express';
 import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
@@ -23,8 +26,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Routes
-// app.use("/api/auth", require("./src/routes/auth"));
-// app.use("/api/users", require("./src/routes/users"));
+app.use("/api", apiRoutes);
 
 // Health check
 app.get("/api/health", (req: Request, res: Response) => {
@@ -55,9 +57,28 @@ app.use((req: Request, res: Response) => {
   });
 });
 
-const PORT: string | number = process.env.PORT || 5000;
+const PORT: string | number = process.env.PORT || 5001;
 
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on port ${PORT}`);
-  console.log(`🌍 Environment: ${process.env.NODE_ENV}`);
-});
+const startServer = async () => {
+  try {
+    await sequelize.authenticate();
+    console.log("✅ Database connection successful");
+
+    // Buat tabel yang belum ada (hanya untuk development)
+    await sequelize.sync();
+
+    app.listen(PORT, (error) => {
+      if (error) {
+        console.error(`❌ Failed to start server on port ${PORT}:`, error.message);
+        process.exit(1);
+      }
+      console.log(`🚀 Server running on port ${PORT}`);
+      console.log(`🌍 Environment: ${process.env.NODE_ENV}`);
+    });
+  } catch (error) {
+    console.error("❌ Database connection failed:", error);
+    process.exit(1);
+  }
+};
+
+startServer();
